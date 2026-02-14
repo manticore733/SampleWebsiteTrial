@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #fdf2f2; /* Soft pink background */
+    font-family: 'Dancing Script', cursive; /* Or a similar romantic font */
+    color: #5a3e3e;
+    /* scroll-behavior: smooth; */
+}
+
+section {
+    padding: 60px 20px;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden; /* Prevents side scrolling */
+}
+
+* {
+  box-sizing: border-box;
+}

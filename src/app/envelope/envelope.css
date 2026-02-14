@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+/* Full-screen overlay - exact soft pink gradient */
+.wrapper {
+  position: fixed;
+  inset: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #ffeef4 0%, #ffe6f1 40%, #ffeef6 100%);
+  z-index: 1000;
+  transition: opacity 0.8s ease;
+  overflow: hidden;
+}
+
+.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Center scene */
+.envelope-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Floating envelope */
+.envelope-container {
+  position: relative;
+  cursor: pointer;
+  animation: float 3s ease-in-out infinite;
+  perspective: 1000px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+}
+
+/* Envelope structure */
+.envelope {
+  position: relative;
+  width: 360px;
+  height: 230px;
+  transform-style: preserve-3d;
+}
+
+/* White rounded envelope body */
+.envelope-body {
+  position: absolute;
+  inset: 18px 26px 26px;
+  background: #fffdfd;
+  border-radius: 18px;
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.08);
+  z-index: 1;
+}
+
+/* Pink flap */
+.flap {
+  position: absolute;
+  top: 18px;
+  left: 26px;
+  width: 0;
+  height: 0;
+  border-left: 154px solid transparent;
+  border-right: 154px solid transparent;
+  border-top: 110px solid #fddae5;
+  transform-origin: top center;
+  transition: transform 0.6s ease;
+  z-index: 2;
+}
+
+/* Heart seal */
+.seal {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  background: #b1194d;
+  box-shadow: 0 10px 25px rgba(177, 25, 77, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.seal-heart {
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+/* Letter */
+.letter {
+  position: absolute;
+  bottom: 18px;
+  left: 20px;
+  width: 280px;
+  height: 170px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Dancing Script", cursive;
+  font-size: 1.6rem;
+  color: #d63384;
+  transition: transform 0.7s ease, opacity 0.7s ease;
+  z-index: 1;
+  opacity: 0;  /* ← HIDE initially */
+  transform: translateY(0);
+}
+.envelope-container.open .letter {
+  opacity: 1;  /* ← SHOW now */
+  transform: translateY(-60px);
+  z-index: 5;
+}
+
+/* Shadow */
+.shadow {
+  width: 220px;
+  height: 20px;
+  background: radial-gradient(circle, rgba(0,0,0,0.2), transparent 70%);
+  filter: blur(4px);
+  margin: 20px auto 0;
+  opacity: 0.8;
+}
+
+/* Open animations */
+.envelope-container.open .flap {
+  transform: rotateX(180deg);
+}
+
+.envelope-container.open .letter {
+  transform: translateY(-60px);
+  z-index: 5;
+}
+
+/* Tap to open text */
+.tap-text {
+  margin-top: 32px;
+  font-family: "Dancing Script", cursive;
+  font-size: 1.6rem;
+  color: #c25273;
+  animation: fadeIn 1s ease forwards;
+}
+
+/* Greeting text */
+.greeting-text {
+  margin-top: 32px;
+  text-align: center;
+  animation: fadeIn 0.9s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.greeting-text h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: 3rem;
+  letter-spacing: 1px;
+  color: #b02268;
+}
+
+.greeting-text p {
+  margin-top: 8px;
+  font-size: 1rem;
+  color: #7b2148;
+}
+
+.heart-icon {
+  font-size: 2.4rem;
+  margin-bottom: 6px;
+}
+
+/* Confetti dots */
+.confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.7) 2px, transparent 2px),
+    radial-gradient(circle, rgba(255,192,203,0.8) 2px, transparent 2px);
+  background-size: 40px 40px, 60px 60px;
+  background-position: 0 0, 20px 30px;
+  opacity: 0.25;
+}

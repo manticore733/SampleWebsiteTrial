@@ -1,0 +1,110 @@
+<!-- <div class="page-container" *ngIf="memory() as mem">
+  
+  <button class="back-pill" (click)="goBack()">← Back</button>
+
+  <header class="hero">
+    <div class="hero-bg" [style.backgroundImage]="'url(' + mem.src + ')'"></div>
+    <div class="hero-content">
+      <h1>{{ mem.caption }}</h1>
+      <p>{{ mem.description }}</p>
+    </div>
+  </header>
+
+  <div class="story-container">
+    
+    <div class="story-intro">
+      <span class="intro-icon">♥</span>
+      <h2>The Story</h2>
+    </div>
+
+    <div *ngFor="let block of mem.storyBlocks" class="story-row"
+         [class.row-reverse]="block.imagePos === 'left'">
+      
+      <div class="text-col">
+        <h3 *ngIf="block.title">{{ block.title }}</h3>
+        <p>"{{ block.text }}"</p>
+        <div class="heart-decoration">❤</div>
+      </div>
+
+      <div class="image-col" *ngIf="block.image">
+        <div class="pinned-polaroid" [style.transform]="'rotate(' + (block.imagePos === 'left' ? -3 : 3) + 'deg)'">
+          <div class="pin"></div> <div class="polaroid-inner">
+            <img [src]="block.image" alt="Memory">
+          </div>
+          <div class="polaroid-footer">
+             Always & Forever
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-nav">
+       <button class="next-btn" (click)="nextMemory()">Next Memory →</button>
+    </div>
+  </div>
+
+</div> -->
+
+
+
+<div class="page-container" *ngIf="memory() as mem">
+  
+<div class="floating-hearts">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <button class="back-pill" (click)="goBack()">← Back</button>
+
+  <header class="hero">
+    <div class="hero-bg" [style.backgroundImage]="'url(' + mem.src + ')'"></div>
+    
+    <div class="hero-fade-overlay"></div>
+
+    <div class="hero-content">
+      <h1>{{ mem.caption }}</h1>
+      <p>{{ mem.description }}</p>
+    </div>
+  </header>
+
+  <div class="story-container">
+    
+    <div class="story-intro">
+      <span class="intro-icon">♥</span>
+      <h2>The Story</h2>
+    </div>
+
+    <div *ngFor="let block of mem.storyBlocks" class="story-row"
+         [class.row-reverse]="block.imagePos === 'left'">
+      
+      <div class="text-col">
+        <h3 *ngIf="block.title">{{ block.title }}</h3>
+        <p>"{{ block.text }}"</p>
+        <div class="heart-decoration">❤</div>
+      </div>
+
+      <div class="image-col" *ngIf="block.image">
+        <div class="pinned-polaroid" [style.transform]="'rotate(' + (block.imagePos === 'left' ? -3 : 3) + 'deg)'">
+          <div class="pin"></div> 
+          <div class="polaroid-inner">
+            <img [src]="block.image" alt="Memory">
+          </div>
+          <div class="polaroid-footer">
+             Always & Forever
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-nav">
+       <button class="next-btn" (click)="nextMemory()">Next Memory →</button>
+    </div>
+  </div>
+
+</div>

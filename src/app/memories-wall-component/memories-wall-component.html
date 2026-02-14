@@ -1,0 +1,30 @@
+<app-envelope></app-envelope>
+
+<section class="memories-section">
+  
+  <div class="content">
+    <h2 class="title">Our Memories</h2>
+    <div class="subtitle">Tap a photo to relive the full story 💕</div>
+  </div>
+
+  <div class="grid">
+    <div 
+      *ngFor="let memory of memories; trackBy: trackById"
+      class="polaroid"
+      [style.transform]="'rotate(' + memory.rotation + 'deg)'"
+      (click)="openMemory(memory)" 
+    >
+      <div class="tape"></div>
+
+      <div class="photo-frame">
+        <img [src]="memory.src" [alt]="memory.caption">
+      </div>
+
+      <div class="caption">{{ memory.caption }}</div>
+    </div>
+  </div>
+</section>
+<app-love-coupons></app-love-coupons>
+<app-music-player></app-music-player>
+
+

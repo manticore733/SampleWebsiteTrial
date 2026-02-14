@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+.memories-section {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  background: #fff5f5; /* Clean light pink background */
+  position: relative;
+}
+
+/* Titles */
+.content {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 4rem;
+  color: #b1194d;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #d63384;
+  font-style: italic;
+}
+
+/* THE 6-PHOTO GRID */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem; /* Space between photos */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Polaroid Card */
+.polaroid {
+  width: 300px; /* Fixed width */
+  background: white;
+  padding: 15px 15px 50px 15px; /* Large bottom padding for text */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  /* Ensure rotation works */
+  transform-origin: center;
+}
+
+.polaroid:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  z-index: 10;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.photo-frame {
+  width: 100%;
+  aspect-ratio: 1; /* Square */
+  background: #eee;
+  overflow: hidden;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.caption {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  color: #b1194d;
+  text-align: center;
+  position: absolute;
+  bottom: 10px;
+  left: 0; 
+  right: 0;
+}
+
+/* Tape styling */
+.tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 25px;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}

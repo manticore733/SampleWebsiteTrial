@@ -1,0 +1,99 @@
+<section class="music-section">
+  
+  <div class="floating-notes">
+    <span>♪</span><span>♫</span><span>♩</span><span>♬</span><span>♪</span>
+    <span>♫</span><span>♩</span><span>♬</span><span>♪</span><span>♫</span>
+  </div>
+
+  <div class="content-header">
+    <div class="small-tag">🎵 Our Soundtrack 🎵</div>
+    <h2 class="title">Songs That Are Us</h2>
+    <div class="subtitle">Every song tells our story 🎶</div>
+  </div>
+
+  <div class="player-container">
+    
+    <div class="player-card">
+      
+      <div class="player-visual" [ngClass]="playlist[activeTrack].colorClass">
+        
+        <div class="vinyl-record" [class.spinning]="isPlaying">
+          <div class="vinyl-inner"></div>
+        </div>
+
+        <div class="floating-emoji">{{ playlist[activeTrack].emoji }}</div>
+
+        <div class="sound-wave">
+          <div class="bar" [class.animating]="isPlaying"></div>
+          <div class="bar" [class.animating]="isPlaying"></div>
+          <div class="bar" [class.animating]="isPlaying"></div>
+          <div class="bar" [class.animating]="isPlaying"></div>
+          <div class="bar" [class.animating]="isPlaying"></div>
+        </div>
+      </div>
+
+      <div class="player-controls-area">
+        
+        <div class="song-info">
+          <h3>{{ playlist[activeTrack].title }}</h3>
+          <p>{{ playlist[activeTrack].artist }}</p>
+        </div>
+
+        <div class="reason-box">
+          <span class="reason-label">Why this song?</span>
+          <p>"{{ playlist[activeTrack].reason }}"</p>
+        </div>
+
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" [class.moving]="isPlaying"></div>
+          </div>
+        </div>
+
+        <div class="control-buttons">
+          <button (click)="prevTrack()">⏮</button>
+          
+          <button class="play-btn" (click)="togglePlay()">
+            <span *ngIf="!isPlaying">▶</span>
+            <span *ngIf="isPlaying">⏸</span>
+          </button>
+          
+          <button (click)="nextTrack()">⏭</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="playlist-list">
+      <div 
+        *ngFor="let song of playlist; let i = index" 
+        class="playlist-item"
+        [class.active]="i === activeTrack"
+        (click)="selectTrack(i)"
+      >
+        <div class="track-num">{{ i + 1 }}</div>
+        
+        <div class="track-icon-box" [ngClass]="song.colorClass">
+          <span *ngIf="i !== activeTrack || !isPlaying">▶</span>
+          <span *ngIf="i === activeTrack && isPlaying" class="pulse-icon">Iı</span>
+        </div>
+
+        <div class="track-details">
+          <h4>{{ song.title }}</h4>
+          <p>{{ song.artist }}</p>
+        </div>
+
+        <div class="track-emoji">{{ song.emoji }}</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="next-surprise-section">
+  <div class="divider-line"></div>
+  <p class="final-text">I have one last thing for you...</p>
+  <button class="mailbox-btn" routerLink="/mailbox">
+    Open Final Surprise 💌
+  </button>
+</div>

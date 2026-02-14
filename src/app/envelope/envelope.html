@@ -1,0 +1,38 @@
+<div class="wrapper" [class.fade-out]="isOpenedAndGone">
+  <div class="confetti"></div>
+
+  <div class="envelope-scene">
+    <div class="envelope-container" [class.open]="isOpen" (click)="toggleEnvelope()">
+      <div class="envelope">
+        <div class="envelope-front">
+          <div class="envelope-body"></div>
+          <div class="flap"></div>
+          <div class="seal">
+            <div class="seal-heart">❤</div>
+          </div>
+        </div>
+
+        <div class="letter">
+          <p>For you, my Miyu ❤️</p>
+        </div>
+      </div>
+      <div class="shadow"></div>
+    </div>
+
+    <div class="tap-text" *ngIf="!isOpen">
+      Tap to open 💌
+    </div>
+
+    <div class="greeting-text" *ngIf="isOpen">
+      <div class="heart-icon">❤️</div>
+      <h1>Happy Valentine's Day</h1>
+      <p>Scroll down, my love...</p>
+    </div>
+  </div>
+</div>
+<!-- Love letter appears after envelope fades -->
+<div *ngIf="isOpenedAndGone" style="min-height: 100vh;">
+  <app-love-letter-component></app-love-letter-component>
+
+</div>
+

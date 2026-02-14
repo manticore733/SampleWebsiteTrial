@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Cormorant+Garamond:wght@400;500&display=swap');
+
+.letter-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1rem;
+  position: relative;
+  opacity: 0;
+  transform: translateY(50px) rotateZ(-1deg);
+  animation: paperRise 0.8s ease-out 0.3s forwards;  /* ← ADD THIS */
+}
+
+@keyframes paperRise {
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateZ(-1deg);
+  }
+}
+
+.letter-section.animate {
+  opacity: 1;
+  transform: translateY(0) rotateZ(-1deg);
+}
+
+.bg-decoration {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,238,244,0.3) 0%, rgba(255,230,241,0.1) 100%);
+}
+
+/* Paper container */
+.letter-container {
+  position: relative;
+  max-width: 28rem;
+  width: 100%;
+}
+
+/* Paper shadow layers */
+.paper-shadow {
+  position: absolute;
+  inset: 0;
+  background: #fffdfd;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  border: 1px solid rgba(255,255,255,0.8);
+}
+
+/* Main paper */
+.paper {
+  position: relative;
+  background: #fffdfd;
+  border-radius: 0.5rem;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 18px 35px rgba(0,0,0,0.08);
+  border: 1px solid rgba(255,255,255,0.9);
+  overflow: hidden;
+}
+
+/* Top decorative border */
+.top-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #fddae5, #ffb6c1, #fddae5);
+}
+
+/* Corner decorations */
+.corner {
+  position: absolute;
+  border: 1.5px solid #fddae5;
+  opacity: 0.5;
+}
+
+.corner.top-left {
+  top: 1rem;
+  left: 1rem;
+  width: 2rem;
+  height: 2rem;
+  border-bottom: none;
+  border-right: none;
+}
+
+.corner.top-right {
+  top: 1rem;
+  right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  border-bottom: none;
+  border-left: none;
+}
+
+.corner.bottom-left {
+  bottom: 1rem;
+  left: 1rem;
+  width: 2rem;
+  height: 2rem;
+  border-top: none;
+  border-right: none;
+}
+
+.corner.bottom-right {
+  bottom: 1rem;
+  right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  border-top: none;
+  border-left: none;
+}
+
+/* Content */
+.content {
+  position: relative;
+  z-index: 10;
+}
+
+.title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #b1194d, #d63384);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #4a4a4a;
+  white-space: pre-line;
+  min-height: 25rem;
+  text-align: justify;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.4rem;
+  background: #b1194d;
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@media (max-width: 640px) {
+  .paper {
+    padding: 1.5rem 2rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .text {
+    font-size: 1.1rem;
+  }
+}
+
+/* Softer background */
+.bg-decoration {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(253, 218, 229, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 182, 193, 0.2) 0%, transparent 50%),
+    linear-gradient(135deg, rgba(255,238,244,0.2) 0%, rgba(255,230,241,0.1) 100%);
+}
+
+/* Layered shadows - reference style */
+.paper-shadow:nth-of-type(1) {
+  z-index: -2;
+  transform: rotate(-1.5deg) translateX(-4px) translateY(4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+
+.paper-shadow:nth-of-type(2) {
+  z-index: -1;
+  transform: rotate(1.5deg) translateX(2px) translateY(2px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+}
+
+/* Main paper - more premium */
+.paper {
+  position: relative;
+  background: linear-gradient(145deg, #fefefe 0%, #fffdfd 100%);
+  border-radius: 0.75rem;
+  padding: 2.5rem 3rem;
+  box-shadow: 
+    0 25px 50px rgba(0,0,0,0.12),
+    0 0 0 1px rgba(255,255,255,0.9) inset;
+  border: 1px solid rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+}
+
+/* Softer corners */
+.corner {
+  border: 2px solid #fce7f0;
+  opacity: 0.6;
+  background: rgba(255,255,255,0.8);
+}
+
+/* Premium title */
+.title {
+  font-size: 2.8rem;
+  text-shadow: 0 2px 8px rgba(177,25,77,0.2);
+}
+

@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Envelope } from "./envelope/envelope";
 
 @Component({
   selector: 'app-root',

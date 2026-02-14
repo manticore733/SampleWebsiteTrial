@@ -1,0 +1,361 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+.music-section {
+  padding: 6rem 2rem;
+  background: #fff5f5;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Titles */
+.content-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.small-tag {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #e63946;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 4rem;
+  color: #b1194d;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #888;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+.player-container {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* --- PLAYER CARD --- */
+.player-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(177, 25, 77, 0.15);
+  margin-bottom: 3rem;
+}
+
+/* Visual Area (Top Half) */
+.player-visual {
+  height: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Gradients for different songs */
+.gradient-1 { background: linear-gradient(135deg, #b1194d, #ff4d6d); }
+.gradient-2 { background: linear-gradient(135deg, #e63946, #f4a261); }
+.gradient-3 { background: linear-gradient(135deg, #d63384, #faa307); }
+.gradient-4 { background: linear-gradient(135deg, #9d4edd, #ffb703); }
+
+/* Spinning Vinyl */
+.vinyl-record {
+  width: 120px;
+  height: 120px;
+  background: #111;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease;
+}
+
+.vinyl-inner {
+  width: 40px;
+  height: 40px;
+  background: #fff5f5;
+  border-radius: 50%;
+  border: 2px solid #333;
+}
+
+.vinyl-record.spinning {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+.floating-emoji {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  animation: bounce 2s infinite;
+}
+
+/* Sound Wave Bars */
+.sound-wave {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  gap: 3px;
+  align-items: flex-end;
+  height: 30px;
+}
+
+.bar {
+  width: 4px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 2px;
+  height: 5px;
+}
+
+.bar.animating {
+  animation: equalize 1s infinite;
+}
+.bar:nth-child(2) { animation-delay: 0.1s; }
+.bar:nth-child(3) { animation-delay: 0.2s; }
+.bar:nth-child(4) { animation-delay: 0.3s; }
+.bar:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes equalize {
+  0%, 100% { height: 5px; }
+  50% { height: 25px; }
+}
+
+/* Controls Area (Bottom Half) */
+.player-controls-area {
+  padding: 2rem;
+  text-align: center;
+}
+
+.song-info h3 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  color: #b1194d;
+  margin: 0;
+}
+
+.song-info p {
+  color: #888;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.reason-box {
+  background: #fff5f5;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  text-align: left;
+  border: 1px solid #ffc2d1;
+}
+
+.reason-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #b1194d;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+}
+
+.reason-box p {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: #555;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Progress Bar */
+.progress-container {
+  height: 6px;
+  background: #eee;
+  border-radius: 3px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #b1194d, #ff4d6d);
+  border-radius: 3px;
+}
+
+.progress-fill.moving {
+  animation: progress 30s linear infinite; /* Simulates a 30s song */
+}
+
+@keyframes progress { 0% { width: 0%; } 100% { width: 100%; } }
+
+/* Buttons */
+.control-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.control-buttons button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #555;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.play-btn {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #b1194d, #ff4d6d) !important;
+  border-radius: 50%;
+  color: white !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(177, 25, 77, 0.3);
+}
+
+.control-buttons button:hover { transform: scale(1.1); }
+
+/* --- PLAYLIST ITEMS --- */
+.playlist-list {
+  background: white;
+  border-radius: 20px;
+  padding: 1rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.playlist-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.playlist-item:hover {
+  background: #fff5f5;
+}
+
+.playlist-item.active {
+  background: #ffeef2;
+  border-color: #ffc2d1;
+}
+
+.track-num {
+  width: 30px;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.track-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-right: 1rem;
+  font-size: 0.8rem;
+}
+
+.track-details { flex: 1; }
+.track-details h4 { margin: 0; font-family: 'Dancing Script'; font-size: 1.4rem; color: #444; }
+.track-details p { margin: 0; font-size: 0.8rem; color: #999; }
+
+.playlist-item.active .track-details h4 { color: #b1194d; }
+
+.track-emoji { font-size: 1.2rem; }
+
+/* Floating Notes Animation */
+.floating-notes {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+}
+
+.floating-notes span {
+  position: absolute;
+  color: #e63946;
+  opacity: 0.1;
+  font-size: 1.5rem;
+  animation: floatNote 10s linear infinite;
+}
+
+/* Random positioning for notes */
+.floating-notes span:nth-child(1) { left: 10%; top: 80%; animation-duration: 8s; }
+.floating-notes span:nth-child(2) { left: 30%; top: 90%; animation-duration: 12s; }
+.floating-notes span:nth-child(3) { left: 70%; top: 85%; animation-duration: 10s; }
+.floating-notes span:nth-child(4) { left: 90%; top: 75%; animation-duration: 9s; }
+/* ... add more if desired ... */
+
+@keyframes floatNote {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  50% { opacity: 0.2; }
+  100% { transform: translateY(-100px) rotate(20deg); opacity: 0; }
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .player-visual { height: 150px; }
+  .vinyl-record { width: 90px; height: 90px; }
+}
+
+
+.next-surprise-section {
+  text-align: center;
+  margin-top: 6rem;
+  padding-bottom: 4rem;
+}
+
+.divider-line {
+  width: 50px;
+  height: 2px;
+  background: #ffc2d1;
+  margin: 0 auto 2rem auto;
+}
+
+.final-text {
+  font-family: 'Dancing Script';
+  font-size: 2rem;
+  color: #b1194d;
+  margin-bottom: 1.5rem;
+}
+
+.mailbox-btn {
+  background: #b1194d;
+  color: white;
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 1.5rem;
+  font-family: 'Playfair Display';
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(177, 25, 77, 0.3);
+  transition: transform 0.3s;
+}
+
+.mailbox-btn:hover {
+  transform: scale(1.05);
+  background: #d6336c;
+}

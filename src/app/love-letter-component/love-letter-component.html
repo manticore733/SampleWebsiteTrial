@@ -1,0 +1,35 @@
+<section #letterSection class="letter-section">
+  <!-- Background decoration -->
+  <div class="bg-decoration"></div>
+
+  <!-- Paper with shadows -->
+  <div class="letter-container">
+    <!-- Shadow layer 2 -->
+    <div class="paper-shadow -rotate-1"></div>
+    
+    <!-- Shadow layer 1 -->
+    <div class="paper-shadow rotate-1"></div>
+    
+    <!-- Main paper -->
+    <div class="paper">
+      <!-- Decorative top border -->
+      <div class="top-border"></div>
+      
+      <!-- Corner decorations -->
+      <div class="corner top-left"></div>
+      <div class="corner top-right"></div>
+      <div class="corner bottom-left"></div>
+      <div class="corner bottom-right"></div>
+
+      <!-- Content -->
+      <div class="content">
+        <h2 class="title">A Letter For You</h2>
+        
+        <div class="text">
+          {{ displayedText }}
+          <span class="cursor" *ngIf="isTyping"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+<section class="coupons-section">
+  <div class="content-header">
+    <h2 class="title">Love Coupons</h2>
+    <div class="subtitle">Tap to flip & redeem whenever you want! 🎟️</div>
+  </div>
+
+  <div class="coupons-grid">
+    <div *ngFor="let coupon of coupons" class="coupon-card-container" (click)="toggleFlip(coupon)">
+      
+      <div class="card-flipper" [class.flipped]="coupon.isFlipped">
+        
+        <div class="card-face card-front">
+          <div class="coupon-icon">{{ coupon.icon }}</div>
+          <div class="heart-icon">♡</div>
+          <h3 class="coupon-title">{{ coupon.title }}</h3>
+          <div class="tap-hint">Tap to reveal →</div>
+        </div>
+
+        <div class="card-face card-back">
+          <h3 class="back-title">{{ coupon.title }}</h3>
+          <p class="back-desc">{{ coupon.description }}</p>
+          
+          <button 
+            class="redeem-btn" 
+            [class.redeemed]="coupon.isRedeemed"
+            (click)="redeemCoupon(coupon, $event)"
+            [disabled]="coupon.isRedeemed"
+          >
+            <span *ngIf="!coupon.isRedeemed">Redeem Now</span>
+            <span *ngIf="coupon.isRedeemed">✅ Redeemed!</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
