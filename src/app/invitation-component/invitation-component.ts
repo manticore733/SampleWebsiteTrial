@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class InvitationComponent implements OnInit, OnDestroy {
   
-  // Target Date: MAR 11, 2026 at 7:00 AM
-  targetDate = new Date('2026-03-11T07:00:00');
+  // Target Date: MAR 10, 2026 at 7:00 AM
+  targetDate = new Date('2026-03-10T07:00:00');
   
   days: string = '00';
   hours: string = '00';
