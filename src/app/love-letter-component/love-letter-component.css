@@ -5,11 +5,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5rem 1rem;
+  padding: 4rem 1rem; /* Slightly less vertical padding so it fits screens better */
   position: relative;
+  /* Keep your animation */
   opacity: 0;
   transform: translateY(50px) rotateZ(-1deg);
-  animation: paperRise 0.8s ease-out 0.3s forwards;  /* ← ADD THIS */
+  animation: paperRise 0.8s ease-out 0.3s forwards;
 }
 
 @keyframes paperRise {
@@ -19,99 +20,90 @@
   }
 }
 
-.letter-section.animate {
-  opacity: 1;
-  transform: translateY(0) rotateZ(-1deg);
-}
-
 .bg-decoration {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255,238,244,0.3) 0%, rgba(255,230,241,0.1) 100%);
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(255, 182, 193, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(177, 25, 77, 0.1) 0%, transparent 40%),
+    linear-gradient(135deg, #fff5f8 0%, #fff0f5 100%);
+  z-index: -10;
 }
 
-/* Paper container */
+/* --- CONTAINER (The Size Fix) --- */
 .letter-container {
   position: relative;
-  max-width: 28rem;
+  /* ✅ INCREASED: Was 28rem, now 42rem for a wider, grander look */
+  max-width: 42rem; 
   width: 100%;
+  margin: 0 auto;
 }
 
-/* Paper shadow layers */
+/* --- SHADOW LAYERS (Depth) --- */
 .paper-shadow {
   position: absolute;
   inset: 0;
-  background: #fffdfd;
-  border-radius: 0.5rem;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-  border: 1px solid rgba(255,255,255,0.8);
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
 }
 
-/* Main paper */
+.paper-shadow.-rotate-1 {
+  transform: rotate(-2.5deg) translate(-5px, 5px);
+  z-index: -2;
+}
+
+.paper-shadow.rotate-1 {
+  transform: rotate(2deg) translate(5px, 2px);
+  z-index: -1;
+}
+
+/* --- MAIN PAPER STYLING --- */
 .paper {
   position: relative;
-  background: #fffdfd;
-  border-radius: 0.5rem;
-  padding: 2rem 2.5rem;
-  box-shadow: 0 18px 35px rgba(0,0,0,0.08);
-  border: 1px solid rgba(255,255,255,0.9);
-  overflow: hidden;
+  /* ✅ UPDATED: Warmer, premium parchment color */
+  background-color: #fffbf0; 
+  background-image: linear-gradient(to bottom right, rgba(255,255,255,0.8), rgba(255,255,255,0)); 
+  border-radius: 2px;
+  /* ✅ INCREASED: More breathing room inside */
+  padding: 4rem 3.5rem; 
+  box-shadow: 
+    0 1px 1px rgba(0,0,0,0.15), 
+    0 10px 0 -5px #eee, 
+    0 10px 1px -4px rgba(0,0,0,0.15), 
+    0 20px 0 -10px #eee, 
+    0 20px 1px -9px rgba(0,0,0,0.15);
+  border: 1px solid #f0e6d2;
 }
 
-/* Top decorative border */
+/* --- DECORATIONS --- */
+/* Elegant double-line top border */
 .top-border {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #fddae5, #ffb6c1, #fddae5);
+  top: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 4px;
+  border-top: 1px solid #e6cccf;
+  border-bottom: 1px solid #e6cccf;
 }
 
-/* Corner decorations */
 .corner {
   position: absolute;
-  border: 1.5px solid #fddae5;
-  opacity: 0.5;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid #dcb5bd; /* Softer pink-gold */
+  opacity: 0.8;
 }
 
-.corner.top-left {
-  top: 1rem;
-  left: 1rem;
-  width: 2rem;
-  height: 2rem;
-  border-bottom: none;
-  border-right: none;
-}
+.corner.top-left { top: 1.5rem; left: 1.5rem; border-right: none; border-bottom: none; }
+.corner.top-right { top: 1.5rem; right: 1.5rem; border-left: none; border-bottom: none; }
+.corner.bottom-left { bottom: 1.5rem; left: 1.5rem; border-right: none; border-top: none; }
+.corner.bottom-right { bottom: 1.5rem; right: 1.5rem; border-left: none; border-top: none; }
 
-.corner.top-right {
-  top: 1rem;
-  right: 1rem;
-  width: 2rem;
-  height: 2rem;
-  border-bottom: none;
-  border-left: none;
-}
-
-.corner.bottom-left {
-  bottom: 1rem;
-  left: 1rem;
-  width: 2rem;
-  height: 2rem;
-  border-top: none;
-  border-right: none;
-}
-
-.corner.bottom-right {
-  bottom: 1rem;
-  right: 1rem;
-  width: 2rem;
-  height: 2rem;
-  border-top: none;
-  border-left: none;
-}
-
-/* Content */
+/* --- TEXT CONTENT --- */
 .content {
   position: relative;
   z-index: 10;
@@ -119,33 +111,33 @@
 
 .title {
   font-family: 'Dancing Script', cursive;
-  font-size: 2.5rem;
+  /* ✅ BIGGER Title */
+  font-size: 3.5rem; 
   font-weight: 700;
-  background: linear-gradient(135deg, #b1194d, #d63384);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #b1194d;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  text-shadow: 1px 1px 2px rgba(177, 25, 77, 0.1);
 }
 
 .text {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.2rem;
-  line-height: 1.8;
-  color: #4a4a4a;
-  white-space: pre-line;
-  min-height: 25rem;
+  /* ✅ BIGGER Body Text */
+  font-size: 1.45rem; 
+  line-height: 1.9;
+  color: #2c2c2c; /* Slightly darker for contrast */
+  white-space: pre-wrap; /* Keeps formatting but wraps lines */
   text-align: justify;
+  min-height: 20rem;
 }
 
+/* --- CURSOR ANIMATION --- */
 .cursor {
   display: inline-block;
   width: 2px;
-  height: 1.4rem;
+  height: 1.5rem;
   background: #b1194d;
-  margin-left: 2px;
-  vertical-align: middle;
+  margin-left: 4px;
   animation: blink 1s infinite;
 }
 
@@ -154,66 +146,21 @@
   51%, 100% { opacity: 0; }
 }
 
-@media (max-width: 640px) {
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .letter-container {
+    max-width: 100%; /* Full width on mobile */
+  }
+  
   .paper {
-    padding: 1.5rem 2rem;
+    padding: 2.5rem 2rem; /* Reduce padding on mobile */
   }
   
   .title {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   
   .text {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
   }
 }
-
-/* Softer background */
-.bg-decoration {
-  position: absolute;
-  inset: 0;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(253, 218, 229, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 182, 193, 0.2) 0%, transparent 50%),
-    linear-gradient(135deg, rgba(255,238,244,0.2) 0%, rgba(255,230,241,0.1) 100%);
-}
-
-/* Layered shadows - reference style */
-.paper-shadow:nth-of-type(1) {
-  z-index: -2;
-  transform: rotate(-1.5deg) translateX(-4px) translateY(4px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-}
-
-.paper-shadow:nth-of-type(2) {
-  z-index: -1;
-  transform: rotate(1.5deg) translateX(2px) translateY(2px);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.06);
-}
-
-/* Main paper - more premium */
-.paper {
-  position: relative;
-  background: linear-gradient(145deg, #fefefe 0%, #fffdfd 100%);
-  border-radius: 0.75rem;
-  padding: 2.5rem 3rem;
-  box-shadow: 
-    0 25px 50px rgba(0,0,0,0.12),
-    0 0 0 1px rgba(255,255,255,0.9) inset;
-  border: 1px solid rgba(255,255,255,0.95);
-  backdrop-filter: blur(10px);
-}
-
-/* Softer corners */
-.corner {
-  border: 2px solid #fce7f0;
-  opacity: 0.6;
-  background: rgba(255,255,255,0.8);
-}
-
-/* Premium title */
-.title {
-  font-size: 2.8rem;
-  text-shadow: 0 2px 8px rgba(177,25,77,0.2);
-}
-

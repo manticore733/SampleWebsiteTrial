@@ -91,3 +91,115 @@
   border: 1px solid rgba(0,0,0,0.05);
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+/* --- CARD SECTION LAYOUT --- */
+.card-section {
+  padding: 4rem 1rem;
+  background: #fff5f5; /* Matches page bg */
+  display: flex;
+  justify-content: center;
+}
+
+/* --- THE PREMIUM GLASS CARD --- */
+.glass-card {
+  position: relative;
+  width: 100%; /* Responsive width */
+  
+  /* ✅ CHANGED: Increased max-width significantly */
+  max-width: 1200px; 
+  
+  border-radius: 30px;
+  padding: 3rem 2rem;
+  overflow: hidden;
+  
+  /* The "Soft" Glass Look */
+  background: rgba(255, 255, 255, 0.85); /* Slightly more opaque for photos */
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 25px 60px rgba(177, 25, 77, 0.1), /* Soft Pink Shadow */
+    inset 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Theme Colors */
+.glass-card.memories-theme {
+  /* Very subtle warm gradient for photos */
+  background: linear-gradient(135deg, #fffcfc 0%, #fff0f5 100%);
+}
+.glass-card.pink-theme {
+  background: linear-gradient(135deg, #fff0f3 0%, #fff 100%);
+}
+.glass-card.red-theme {
+  background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
+}
+
+/* --- FLOATING ANIMATION --- */
+.card-floating-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+.card-floating-bg span {
+  position: absolute;
+  bottom: -50px;
+  font-size: 2rem;
+  opacity: 0.15; /* Very subtle so it doesn't distract from photos */
+  animation: floatUp 15s linear infinite;
+}
+/* Random Positions */
+.card-floating-bg span:nth-child(1) { left: 10%; animation-duration: 12s; }
+.card-floating-bg span:nth-child(2) { left: 30%; animation-duration: 18s; font-size: 1.5rem; }
+.card-floating-bg span:nth-child(3) { left: 60%; animation-duration: 14s; }
+.card-floating-bg span:nth-child(4) { left: 80%; animation-duration: 20s; }
+.card-floating-bg span:nth-child(5) { left: 50%; animation-duration: 16s; font-size: 1.2rem; }
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  20% { opacity: 0.3; }
+  100% { transform: translateY(-600px) rotate(360deg); opacity: 0; }
+}
+
+/* --- CONTENT ADJUSTMENTS --- */
+.card-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Title Styling (Updated to look good on card) */
+.title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 4rem;
+  color: #b1194d;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #d63384;
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+/* --- GRID ADJUSTMENTS --- */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  width: 100%;
+}
+
+/* Tape Stickers */
+.tape-corner {
+  position: absolute;
+  width: 120px;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  z-index: 3;
+}
+.tape-corner.top-left { top: 20px; left: -40px; transform: rotate(-45deg); }
+.tape-corner.top-right { top: 20px; right: -40px; transform: rotate(45deg); }

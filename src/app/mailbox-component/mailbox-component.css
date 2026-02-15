@@ -3,7 +3,6 @@
 /* --- GLOBAL LAYOUT & BACKGROUND --- */
 .page-container {
   min-height: 100vh;
-  /* ✅ Deep Romantic Red Gradient */
   background: radial-gradient(circle at center, #b31217 0%, #8a0e12 100%);
   display: flex;
   align-items: center;
@@ -15,23 +14,16 @@
 
 .back-btn {
   position: absolute;
-  top: 30px;
-  left: 30px;
-  z-index: 100;
+  top: 30px; left: 30px; z-index: 100;
   background: rgba(255,255,255,0.2);
   border: 1px solid rgba(255,255,255,0.4);
-  color: white;
-  padding: 10px 25px;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s;
+  color: white; padding: 10px 25px; border-radius: 30px;
+  cursor: pointer; transition: all 0.3s;
 }
 .back-btn:hover { background: white; color: #b31217; }
 
-/* --- FLOATING HEARTS (Reused logic) --- */
-.floating-hearts {
-  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
-}
+/* --- FLOATING HEARTS --- */
+.floating-hearts { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 .floating-hearts span {
   position: absolute; bottom: -10vh; display: block; width: 20px; height: 20px;
   animation: floatBubble 15s linear infinite;
@@ -51,386 +43,347 @@
 
 /* --- MAILBOX SCENE --- */
 .mailbox-scene {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transform: scale(1.1); /* Make it nice and big */
+  display: flex; flex-direction: column; align-items: center;
+  transform: scale(1.1); transition: all 0.5s ease;
+}
+.mailbox-scene.dimmed {
+  filter: blur(5px) brightness(0.6); pointer-events: none;
 }
 
 .header-text h2 {
-  color: rgba(255,255,255,0.9);
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  color: rgba(255,255,255,0.9); font-size: 1.8rem; margin-bottom: 2rem;
+  letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.2);
   animation: fadeIn 1s ease-out;
 }
-
-/* --- THE MAILBOX OBJECT --- */
-.mailbox {
-  position: relative;
-  width: 280px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.fade-in-text {
+  font-size: 1.2rem; color: #ffcccb; margin-top: 0.5rem;
+  animation: fadeIn 1s forwards;
 }
 
-/* 1. LID (Top Dome) */
+/* --- MAILBOX OBJECT (Standard) --- */
+.mailbox { position: relative; width: 280px; display: flex; flex-direction: column; align-items: center; }
 .mailbox-lid-top {
-  width: 240px;
-  height: 90px;
-  background: #ff5252; /* Bright Red/Coral */
-  border-radius: 120px 120px 0 0;
-  position: relative;
-  z-index: 5;
+  width: 240px; height: 90px; background: #ff5252;
+  border-radius: 120px 120px 0 0; position: relative; z-index: 5;
   box-shadow: inset 0 10px 20px rgba(255,255,255,0.1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: flex; justify-content: center; align-items: center;
 }
-
-/* Swirl Decorations */
 .swirl {
-  width: 50px; height: 50px;
-  border: 4px solid rgba(0,0,0,0.1);
-  border-radius: 50%;
-  position: absolute;
-  bottom: 10px;
+  width: 50px; height: 50px; border: 4px solid rgba(0,0,0,0.1);
+  border-radius: 50%; position: absolute; bottom: 10px;
 }
 .swirl.left { left: 30px; border-color: rgba(0,0,0,0.1) transparent transparent rgba(0,0,0,0.1); transform: rotate(-45deg); }
 .swirl.right { right: 30px; border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) transparent transparent; transform: rotate(45deg); }
-
-/* 2. LID RIM (The overhang) */
 .mailbox-lid-rim {
-  width: 300px;
-  height: 40px;
-  background: #e53935; /* Darker Red */
-  border-radius: 10px;
-  margin-top: -5px;
-  z-index: 6;
+  width: 300px; height: 40px; background: #e53935;
+  border-radius: 10px; margin-top: -5px; z-index: 6;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
-
-/* 3. MAILBOX BODY */
 .mailbox-body {
-  width: 260px;
-  height: 320px;
-  background: #ff5252; /* Same as lid top */
-  position: relative;
-  margin-top: -5px;
-  padding-top: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 260px; height: 320px; background: #ff5252;
+  position: relative; margin-top: -5px; padding-top: 40px;
+  display: flex; flex-direction: column; align-items: center;
   box-shadow: 0 30px 60px rgba(0,0,0,0.4);
 }
-
-/* Slot Area */
 .slot-opening {
-  width: 200px;
-  height: 15px;
-  background: #b71c1c; /* Very Dark Red */
-  border-radius: 10px;
-  position: relative;
-  z-index: 10; /* In front of letter */
+  width: 200px; height: 15px; background: #b71c1c;
+  border-radius: 10px; position: relative; z-index: 10;
 }
-
-/* The Letter Animation */
 .letter {
-  width: 180px;
-  height: 110px;
-  background: #f0f4f8;
-  position: absolute;
-  top: 45px; /* Hidden position */
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 4px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  z-index: -5; /* Behind the slot opening initially */
-  transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 180px; height: 110px; background: #f0f4f8;
+  position: absolute; top: 45px; left: 50%; transform: translateX(-50%);
+  border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  z-index: -5; transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
 }
-
-/* Pop Up Animation */
 .letter.slide-up {
-  top: -60px; /* Moves UP out of the box */
-  z-index: 20; /* Moves IN FRONT of everything */
-  transform: translateX(-50%) rotate(-2deg); /* Cute tilt */
+  top: -60px; z-index: 20; transform: translateX(-50%) rotate(-2deg);
 }
 .letter:hover { transform: translateX(-50%) rotate(0deg) scale(1.05); }
-
 .letter-content { width: 100%; height: 100%; position: relative; padding: 15px; box-sizing: border-box; }
 .stamp { position: absolute; top: 10px; right: 10px; color: #ff5252; font-size: 1.2rem; border: 1px dotted #ccc; padding: 2px 5px; border-radius: 3px; }
 .address-lines .line { height: 2px; background: #e0e0e0; margin-bottom: 8px; }
 .line.short { width: 40%; }
 .line.long { width: 80%; }
 .to-text { font-family: 'Dancing Script', cursive; color: #555; font-size: 1.1rem; position: absolute; bottom: 20px; left: 20px; }
-
-/* Text & Details */
-.mailbox-label {
-  font-family: 'Fredoka', sans-serif;
-  color: white;
-  font-size: 2.8rem;
-  margin-top: 50px;
-  text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
-}
-
+.mailbox-label { font-family: 'Fredoka', sans-serif; color: white; font-size: 2.8rem; margin-top: 50px; text-shadow: 2px 2px 0 rgba(0,0,0,0.1); }
 .bottom-panel {
-  width: 160px;
-  height: 80px;
-  background: rgba(0,0,0,0.05);
-  margin-top: auto;
-  margin-bottom: 30px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 160px; height: 80px; background: rgba(0,0,0,0.05);
+  margin-top: auto; margin-bottom: 30px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
   box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1);
 }
-
 .envelope-icon {
-  width: 60px; height: 40px;
-  border: 2px solid rgba(255,255,255,0.3);
-  border-radius: 4px;
-  position: relative;
+  width: 60px; height: 40px; border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 4px; position: relative;
 }
 .envelope-icon::after {
   content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   border-bottom: 2px solid rgba(255,255,255,0.3);
-  transform-origin: top;
-  transform: scaleY(0.6) skewX(45deg); /* Simple V shape */
+  transform-origin: top; transform: scaleY(0.6) skewX(45deg);
 }
-
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ✅ Add this to dim the mailbox when ticket appears */
-.mailbox-scene.dimmed {
-  filter: blur(5px) brightness(0.6);
-  transition: all 0.5s ease;
-  pointer-events: none; /* Disable clicking mailbox again */
-}
-
-.fade-in-text {
-  font-size: 1.2rem; color: #ffcccb; margin-top: 0.5rem;
-  animation: fadeIn 1s forwards;
-}
-
-/* --- TICKET OVERLAY --- */
+/* --- 3D TICKET OVERLAY --- */
 .ticket-overlay {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 50;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%); z-index: 50;
+  perspective: 1500px; /* Needed for 3D flip */
 }
 
-/* ✅ THE REALISTIC TICKET CONTAINER (Wavy Edges + Deep Cuts) */
-.ticket-container {
-  width: 680px;
-  height: 280px;
-  display: flex;
+.ticket-wrapper {
+  width: 680px; height: 280px;
   position: relative;
+  animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.ticket-card {
+  position: relative; width: 100%; height: 100%;
+  transition: transform 1s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d; /* Children live in 3D space */
+}
+
+/* Toggle Class for Flip */
+.ticket-wrapper.flipped .ticket-card {
+  transform: rotateY(180deg);
+}
+
+/* --- SHARED FACE STYLES (Front & Back) --- */
+.ticket-face {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  backface-visibility: hidden; /* Hide back when flipped */
+  display: flex;
+  
+  /* Ticket Shape Styling */
   box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-  filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2)); 
+  filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2));
   border-radius: 4px;
 
-  /* --- 1. WAVY EDGES (Visual Trick) --- */
+  /* Wavy Background Trick */
   background: 
-    /* Left Wavy Edge */
     radial-gradient(circle at 0 50%, transparent 9px, #fdfbf7 9.5px) 0 0 / 20px 24px repeat-y,
-    /* Right Wavy Edge */
     radial-gradient(circle at 100% 50%, transparent 9px, #fdfbf7 9.5px) 100% 0 / 20px 24px repeat-y,
-    /* Solid Center Body */
     linear-gradient(#fdfbf7, #fdfbf7) center / calc(100% - 40px) 100% no-repeat;
-  
-  /* --- 2. DEEP NOTCHES (The Big Cutouts) --- */
-  --cut-pos: 125px; 
-  --cut-size: 25px; 
 
+  /* Deep Notches Mask */
+  --cut-pos: 125px; --cut-size: 25px;
   mask-image: 
-    /* Top Left Notch */
     radial-gradient(circle at var(--cut-pos) 0, transparent var(--cut-size), black calc(var(--cut-size) + 0.5px)),
-    /* Bottom Left Notch */
     radial-gradient(circle at var(--cut-pos) 100%, transparent var(--cut-size), black calc(var(--cut-size) + 0.5px)),
-    /* Top Right Notch */
     radial-gradient(circle at calc(100% - var(--cut-pos)) 0, transparent var(--cut-size), black calc(var(--cut-size) + 0.5px)),
-    /* Bottom Right Notch */
     radial-gradient(circle at calc(100% - var(--cut-pos)) 100%, transparent var(--cut-size), black calc(var(--cut-size) + 0.5px));
-
-  mask-size: 51% 51%;
-  mask-repeat: no-repeat;
+  mask-size: 51% 51%; mask-repeat: no-repeat;
   mask-position: top left, bottom left, top right, bottom right;
-
-  /* Webkit Support */
   -webkit-mask-image: 
     radial-gradient(circle at var(--cut-pos) 0, transparent var(--cut-size), black calc(var(--cut-size) + 0.5px)),
     radial-gradient(circle at var(--cut-pos) 100%, transparent var(--cut-size), black calc(var(--cut-size) + 0.5px)),
     radial-gradient(circle at calc(100% - var(--cut-pos)) 0, transparent var(--cut-size), black calc(var(--cut-size) + 0.5px)),
     radial-gradient(circle at calc(100% - var(--cut-pos)) 100%, transparent var(--cut-size), black calc(var(--cut-size) + 0.5px));
-  -webkit-mask-size: 51% 51%;
-  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 51% 51%; -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: top left, bottom left, top right, bottom right;
 }
 
-/* --- LEFT STUB (DATE) --- */
+/* --- FRONT FACE --- */
+.ticket-front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+/* --- BACK FACE (Rotated) --- */
+.ticket-back {
+  z-index: 1;
+  transform: rotateY(180deg);
+}
+
+/* --- TICKET CONTENT (Shared) --- */
 .ticket-stub {
-  width: 125px; /* Matches --cut-pos */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent; /* Changed to transparent for wave */
-  border-right: 2px dashed #d0d0d0;
-  padding-left: 10px;
+  width: 125px; display: flex; align-items: center; justify-content: center;
+  background: transparent; border-right: 2px dashed #d0d0d0; padding-left: 10px;
 }
-
+.ticket-end {
+  width: 125px; display: flex; align-items: center; justify-content: center;
+  background: transparent; border-left: 2px dashed #d0d0d0; padding-right: 10px;
+}
 .vertical-date {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  font-family: 'Courier New', monospace;
-  font-weight: 700;
-  letter-spacing: 4px;
-  color: #b31217; 
-  font-size: 1.2rem;
-  opacity: 0.8;
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  font-family: 'Courier New', monospace; font-weight: 700; letter-spacing: 4px;
+  color: #b31217; font-size: 1.2rem; opacity: 0.8;
 }
-
-/* --- MAIN BODY --- */
 .ticket-body {
-  flex: 1;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-  background: transparent;
+  flex: 1; padding: 2rem; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  position: relative; background: transparent;
 }
-
 .ticket-body::after {
   content: ''; position: absolute; inset: 15px 0;
-  border-top: 1px solid #e0e0e0; 
-  border-bottom: 1px solid #e0e0e0; 
-  pointer-events: none;
+  border-top: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0; pointer-events: none;
 }
-
 .ticket-title {
-  font-family: 'Times New Roman', serif;
-  letter-spacing: 3px;
-  font-size: 1.8rem;
-  color: #8a0e12; 
-  text-transform: uppercase;
-  margin: 0;
-  line-height: 1.2;
+  font-family: 'Times New Roman', serif; letter-spacing: 3px; font-size: 1.8rem;
+  color: #8a0e12; text-transform: uppercase; margin: 0; line-height: 1.2; padding-top: 14px;
 }
-
 .ticket-divider {
-  width: 50%;
-  height: 1px;
-  background: #b31217;
-  margin: 15px 0;
-  opacity: 0.3;
+  width: 50%; height: 1px; background: #b31217; margin: 1px 0; opacity: 0.3;
 }
-
 .ticket-big-date {
-  font-size: 4rem;
-  font-family: 'Times New Roman', serif;
-  color: #333;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 10px;
+  font-size: 4rem; font-family: 'Times New Roman', serif; color: #333; font-weight: bold;
+  display: flex; align-items: center; gap: 15px; margin-bottom: 10px;
 }
-
-.heart-icon { 
-  color: #b31217; 
-  font-size: 3rem; 
-  transform: translateY(-4px); 
-}
-
+.heart-icon { color: #b31217; font-size: 3rem; transform: translateY(-4px); }
 .ticket-desc {
-  font-family: 'Times New Roman', serif;
-  font-size: 0.95rem;
-  color: #666;
-  max-width: 350px;
-  line-height: 1.4;
-  font-style: italic;
+  font-family: 'Times New Roman', serif; font-size: 0.95rem; color: #666;
+  max-width: 350px; line-height: 1.4; font-style: italic;
 }
-
-/* --- RIGHT STUB (BARCODE) --- */
-.ticket-end {
-  width: 125px; /* Matches --cut-pos */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border-left: 2px dashed #d0d0d0;
-  padding-right: 10px;
-}
-
 .barcode {
-  width: 40px; height: 210px;
-  opacity: 0.85;
-  background: repeating-linear-gradient(
-    to bottom,
-    #222 0, #222 3px, 
-    transparent 3px, transparent 5px, 
-    #222 5px, #222 8px, 
-    transparent 8px, transparent 9px,
-    #222 9px, #222 11px,
-    transparent 11px, transparent 13px
-  );
+  width: 40px; height: 210px; opacity: 0.85;
+  background: repeating-linear-gradient(to bottom, #222 0, #222 3px, transparent 3px, transparent 5px, #222 5px, #222 8px, transparent 8px, transparent 9px);
 }
 
-/* Hide old elements */
-.circle-cutout { display: none; }
+/* --- BACK FACE SPECIFIC (Handwritten) --- */
+.handwritten-note {
+  font-family: 'Dancing Script', cursive; font-size: 1.2rem; color: #555;
+  transform: rotate(-90deg);
+}
+.handwritten-body { z-index: 5; } /* Ensure clickable */
+.handwritten-body::after { border: none !important; } /* No borders on back text */
 
-/* --- YES BUTTON --- */
-.yes-btn {
-  margin-top: 50px;
-  background: white;
-  color: #b31217;
-  border: none;
-  padding: 14px 80px;
-  font-size: 1.8rem;
-  border-radius: 50px;
-  font-family: 'Fredoka', sans-serif;
-  cursor: pointer;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  transition: all 0.3s ease;
+.handwritten-question {
+  font-family: 'Dancing Script', cursive; font-size: 3rem; color: #333;
+  margin-bottom: 2rem; line-height: 1.2;
 }
 
-.yes-btn:hover {
-  transform: scale(1.05) translateY(-3px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+/* YES / NO Buttons */
+.choice-container {
+  display: flex; gap: 4rem; align-items: center;
 }
+.choice-item {
+  position: relative; font-family: 'Times New Roman', serif;
+  font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; color: #333;
+  cursor: pointer; padding: 10px 20px;
+}
+
+/* YES - Circled Animation */
+.yes-wrapper .circle-svg {
+  position: absolute; top: -20px; left: -15px; width: 140%; height: 160%;
+  pointer-events: none;
+  stroke-dasharray: 300; stroke-dashoffset: 300;
+  animation: drawCircle 1s ease-out 0.8s forwards; /* Delay starts after flip */
+}
+@keyframes drawCircle { to { stroke-dashoffset: 0; } }
+.yes-wrapper:hover { transform: scale(1.1); }
+
+/* NO - Scratched Out */
+.no-wrapper { color: #999; cursor: not-allowed; }
+.scratch-line, .scratch-line-2 {
+  position: absolute; top: 50%; left: -10%; width: 120%; height: 2px;
+  background: #555; transform: rotate(-10deg); opacity: 0.8;
+}
+.scratch-line-2 { transform: rotate(10deg); }
 
 @keyframes popIn {
-  from { opacity: 0; transform: translate(-50%, -40%) scale(0.8); }
-  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  from { opacity: 0; transform: translate(0, 50px) scale(0.8); }
+  to { opacity: 1; transform: translate(0, 0) scale(1); }
 }
 
 /* --- MOBILE FIXES --- */
 @media (max-width: 720px) {
-  .ticket-container {
-    width: 95vw; height: auto; flex-direction: column;
-    /* Simplify mask on mobile to avoid glitches */
-    mask-image: none; -webkit-mask-image: none;
-    background: #fdfbf7; /* Fallback to solid background */
-    border-radius: 10px;
-  }
-  .ticket-stub, .ticket-body, .ticket-end { 
-    width: 100%; border: none; padding: 20px;
-  }
-  .ticket-stub { height: 70px; flex-direction: row; border-bottom: 2px dashed #ccc; }
-  .ticket-end { height: 80px; border-top: 2px dashed #ccc; }
-  .vertical-date { writing-mode: horizontal-tb; transform: none; letter-spacing: 2px; }
-  .barcode { width: 80%; height: 40px; background: repeating-linear-gradient(to right, #222 0, #222 3px, transparent 3px, transparent 5px); }
+  .ticket-wrapper { width: 95vw; height: auto; }
+  .ticket-face { flex-direction: column; mask-image: none; -webkit-mask-image: none; border-radius: 10px; background: #fdfbf7; }
+  .ticket-stub, .ticket-end { width: 100%; border: none; padding: 15px; }
+  .ticket-stub { border-bottom: 1px dashed #ccc; }
+  .ticket-end { border-top: 1px dashed #ccc; }
+  .barcode { width: 80%; height: 40px; background: repeating-linear-gradient(to right, #222 0, #222 3px, transparent 3px); }
+  .handwritten-question { font-size: 2rem; }
+  /* On mobile, flip interaction might need tap, but auto-timer works fine */
+}
+
+/* ... Keep all existing styles ... */
+
+/* ✅ UPDATE: Make NO button clickable now */
+.no-wrapper {
+  color: #999;
+  cursor: pointer; /* Changed from not-allowed */
+  transition: transform 0.2s;
+}
+.no-wrapper:hover {
+  transform: scale(1.1);
+  color: #b31217; /* Turns red when hovering to tempt them */
+}
+
+/* --- ERROR 404 OVERLAY --- */
+.error-overlay {
+  position: fixed;
+  inset: 0;
+  background: #b31217; /* Deep Red Background */
+  z-index: 200; /* On top of everything */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: flashIn 0.3s ease-out;
+}
+
+.error-content {
+  text-align: center;
+  color: white;
+  font-family: 'Fredoka', sans-serif;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.error-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.error-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.error-msg {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+.error-image {
+  margin-bottom: 3rem;
+}
+
+.error-image img {
+  width: 250px;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Fallback if you haven't uploaded the image yet */
+.fallback-emoji {
+  font-size: 6rem;
+  display: none; /* remove this line if you don't have an image yet */
+}
+
+.error-back-btn {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 10px 30px;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.error-back-btn:hover {
+  background: white;
+  color: #b31217;
+}
+
+@keyframes flashIn {
+  from { opacity: 0; transform: scale(1.1); }
+  to { opacity: 1; transform: scale(1); }
 }

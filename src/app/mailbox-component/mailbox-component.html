@@ -1,4 +1,4 @@
-<div class="page-container">
+<!-- <div class="page-container">
   
   <div class="floating-hearts">
     <span></span><span></span><span></span><span></span><span></span>
@@ -48,7 +48,7 @@
     
     <div class="ticket-container">
       <div class="ticket-stub">
-        <span class="vertical-date">14 - 02 - 2026</span>
+        <span class="vertical-date">10 - 03 - 2026</span>
       </div>
 
       <div class="ticket-body">
@@ -74,6 +74,212 @@
       Yes
     </button>
 
+  </div>
+
+</div> -->
+
+
+<!-- <div class="page-container">
+  
+  <div class="floating-hearts">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <button class="back-btn" (click)="goBack()">← Back</button>
+
+  <div class="mailbox-scene" [class.dimmed]="isTicketVisible">
+    
+    <div class="header-text">
+      <h2>{{ isTicketVisible ? "It looks like a ticket..." : "It looks like there's a letter..." }}</h2>
+      <h3 *ngIf="isTicketVisible && !isFlipped" class="fade-in-text">Wait for it...</h3>
+    </div>
+
+    <div class="mailbox">
+      <div class="mailbox-lid-top">
+        <div class="swirl left"></div>
+        <div class="swirl right"></div>
+      </div>
+      <div class="mailbox-lid-rim"></div>
+      <div class="mailbox-body">
+        <div class="slot-shadow"></div>
+        
+        <div class="letter" [class.slide-up]="isLetterOut" (click)="openLetter()">
+          <div class="letter-content">
+            <div class="stamp">❤</div>
+            <div class="address-lines">
+              <div class="line short"></div>
+              <div class="line long"></div>
+            </div>
+            <span class="to-text">My Valentine</span>
+          </div>
+        </div>
+
+        <div class="slot-opening"></div>
+        <h1 class="mailbox-label">Mailbox</h1>
+        <div class="bottom-panel">
+          <div class="envelope-icon"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticket-overlay" *ngIf="isTicketVisible">
+    
+    <div class="ticket-wrapper" [class.flipped]="isFlipped">
+      <div class="ticket-card">
+        
+        <div class="ticket-face ticket-front">
+          <div class="ticket-stub">
+            <span class="vertical-date">10 - 03 - 2026</span>
+          </div>
+
+          <div class="ticket-body">
+            <h2 class="ticket-title">VALENTINE DATE<br>INVITATION</h2>
+            <div class="ticket-divider"></div>
+            <div class="ticket-big-date">
+              10 <span class="heart-icon">♥</span> MAR
+            </div>
+            <p class="ticket-desc">
+              Admit one special person to a magical evening filled with love, laughter, and memories.
+            </p>
+          </div>
+
+          <div class="ticket-end">
+            <div class="barcode"></div>
+          </div>
+        </div>
+
+        <div class="ticket-face ticket-back">
+          <div class="ticket-stub">
+            <span class="handwritten-note">10.03.26</span>
+          </div>
+
+          <div class="ticket-body handwritten-body">
+            <h2 class="handwritten-question">Will you be my<br>valentine?</h2>
+            
+            <div class="choice-container">
+              <div class="choice-item yes-wrapper" (click)="onYesClick()">
+                <span class="choice-text">YES</span>
+                <svg class="circle-svg" viewBox="0 0 120 60">
+                   <path d="M10,30 Q30,5 60,10 Q100,15 110,30 Q115,50 90,55 Q50,60 20,45 Q5,35 10,30" 
+                         fill="none" stroke="#b31217" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </div>
+
+              <div class="choice-item no-wrapper">
+                <span class="choice-text">NO</span>
+                <div class="scratch-line"></div>
+                <div class="scratch-line-2"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ticket-end">
+             <div class="barcode"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div> -->
+
+
+
+<div class="page-container">
+  
+  <div class="floating-hearts">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <button class="back-btn" (click)="goBack()">← Back</button>
+
+  <div class="mailbox-scene" [class.dimmed]="isTicketVisible">
+    <div class="header-text">
+      <h2>{{ isTicketVisible ? "It looks like a ticket..." : "It looks like there's a letter..." }}</h2>
+      <h3 *ngIf="isTicketVisible && !isFlipped" class="fade-in-text">Wait for it...</h3>
+    </div>
+
+    <div class="mailbox">
+      <div class="mailbox-lid-top"><div class="swirl left"></div><div class="swirl right"></div></div>
+      <div class="mailbox-lid-rim"></div>
+      <div class="mailbox-body">
+        <div class="slot-shadow"></div>
+        <div class="letter" [class.slide-up]="isLetterOut" (click)="openLetter()">
+          <div class="letter-content">
+            <div class="stamp">❤</div>
+            <div class="address-lines"><div class="line short"></div><div class="line long"></div></div>
+            <span class="to-text">My Valentine</span>
+          </div>
+        </div>
+        <div class="slot-opening"></div>
+        <h1 class="mailbox-label">Mailbox</h1>
+        <div class="bottom-panel"><div class="envelope-icon"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticket-overlay" *ngIf="isTicketVisible">
+    <div class="ticket-wrapper" [class.flipped]="isFlipped">
+      <div class="ticket-card">
+        
+        <div class="ticket-face ticket-front">
+          <div class="ticket-stub"><span class="vertical-date">10 - 03 - 2026</span></div>
+          <div class="ticket-body">
+            <h2 class="ticket-title">VALENTINE DATE<br>INVITATION</h2>
+            <div class="ticket-divider"></div>
+            <div class="ticket-big-date">10 <span class="heart-icon">♥</span> MAR</div>
+            <p class="ticket-desc">Admit one special person to a magical evening filled with love, laughter, and memories.</p>
+          </div>
+          <div class="ticket-end"><div class="barcode"></div></div>
+        </div>
+
+        <div class="ticket-face ticket-back">
+          <div class="ticket-stub"><span class="handwritten-note">10.03.26</span></div>
+          <div class="ticket-body handwritten-body">
+            <h2 class="handwritten-question">Will you be my<br>valentine?</h2>
+            
+            <div class="choice-container">
+              <div class="choice-item yes-wrapper" (click)="onYesClick()">
+                <span class="choice-text">YES</span>
+                <svg class="circle-svg" viewBox="0 0 120 60">
+                   <path d="M10,30 Q30,5 60,10 Q100,15 110,30 Q115,50 90,55 Q50,60 20,45 Q5,35 10,30" 
+                         fill="none" stroke="#b31217" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </div>
+
+              <div class="choice-item no-wrapper" (click)="onNoClick()">
+                <span class="choice-text">NO</span>
+                <div class="scratch-line"></div>
+                <div class="scratch-line-2"></div>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-end"><div class="barcode"></div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="error-overlay" *ngIf="isErrorVisible">
+    <div class="error-content">
+      <div class="error-icon">⊗</div> <h1 class="error-title">error 404 - Page not found</h1>
+      <p class="error-msg">Sorry, it seems you chose an answer you weren't supposed to...</p>
+      
+      <div class="error-image">
+        <img src="assets/images/404.png" alt="Panic!">
+        <div class="fallback-emoji">😱😵‍💫</div> 
+      </div>
+
+      <button class="error-back-btn" (click)="closeError()">Back ➝</button>
+    </div>
   </div>
 
 </div>

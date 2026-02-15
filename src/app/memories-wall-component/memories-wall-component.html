@@ -1,4 +1,4 @@
-<app-envelope></app-envelope>
+<!-- <app-envelope></app-envelope>
 
 <section class="memories-section">
   
@@ -27,4 +27,61 @@
 <app-love-coupons></app-love-coupons>
 <app-music-player></app-music-player>
 
+ -->
 
+
+
+
+
+
+ <app-envelope></app-envelope>
+
+<section class="card-section">
+  
+  <div class="glass-card memories-theme">
+    
+    <div class="card-floating-bg">
+      <span>📸</span><span>✨</span><span>💕</span><span>📸</span><span>✨</span>
+    </div>
+
+    <div class="tape-corner top-left"></div>
+    <div class="tape-corner top-right"></div>
+
+    <div class="card-content">
+      
+      <div class="content">
+        <h2 class="title">Our Memories</h2>
+        <div class="subtitle">Tap a photo to relive the full story 💕</div>
+      </div>
+
+      <div class="grid">
+        <div 
+          *ngFor="let memory of memories; trackBy: trackById"
+          class="polaroid"
+          [style.transform]="'rotate(' + memory.rotation + 'deg)'"
+          (click)="openMemory(memory)" 
+        >
+          <div class="tape"></div>
+          <div class="photo-frame">
+            <img [src]="memory.src" [alt]="memory.caption">
+          </div>
+          <div class="caption">{{ memory.caption }}</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<section class="card-section">
+  <div class="glass-card pink-theme">
+    <app-love-coupons></app-love-coupons>
+  </div>
+</section>
+
+<section class="card-section">
+  <div class="glass-card red-theme">
+    <app-music-player></app-music-player>
+  </div>
+</section>
